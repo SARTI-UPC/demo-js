@@ -1,6 +1,8 @@
 <html>
     <head>
         <script>
+            let products = [];
+
             function getProducts() {
                 let products = [
                     {
@@ -54,17 +56,28 @@
             }
 
             function ordenaPerNom() {
-                // TO-DO
+                //products = getProducts();
+                products.sort( (p1, p2) => {
+                  if (p1.name < p2.name) return -1;
+                  if (p1.name > p2.name) return 1;
+                  return 0;
+                });
+                escriureTaula(products);
             }
 
             function ordenaPerCategoria() {
-                // TO-DO
+               //products = getProducts();
+                products.sort( (p1, p2) => {
+                  if (p1.category < p2.category) return -1;
+                  if (p1.category > p2.category) return 1;
+                  return 0;
+                });
+                escriureTaula(products);
             }
 
             function ordenaPerPreu() {
-                let products = getProducts();
-                products.sort( 
-                    (p1, p2) => {
+               // products = getProducts();
+                products.sort( (p1, p2) => {
                   if (p1.price < p2.price) return -1;
                   if (p1.price > p2.price) return 1;
                   return 0;
@@ -73,17 +86,37 @@
             }
 
             function filtraPer(elFiltre) {
-                // TO-DO
-                // exemple
-                // result = words.filter((word) => word.length > 6);
+                //products = getProducts();
+                //console.log(products);
+                if (elFiltre!="") {
+                    filtered = products.filter((producte) => producte.category==elFiltre);
+                }
+                else {
+                    //products = getProducts();
+                    filtered = products;
+                }
+                //console.log(filtered);
+                escriureTaula(filtered);
             }
+
+            function deleteItem(index) {
+                //products = getProducts();
+                console.log(index);
+                products.splice(index, 1);
+                console.log(products);
+                
+                escriureTaula(products);
+            }
+
 
             function escriureTaula(products) {
                 //console.log(products);
                 let theTable = "";
                 let product = null;
+                let i = 0;
                 products.forEach((product) => {
-                    theTable+="<tr><td>"+product.name+"</td><td>"+product.category+"</td><td>"+product.price+"</td></tr>";
+                    theTable+="<tr><td>"+product.name+"</td><td>"+product.category+"</td><td>"+product.price+"</td><td><a href='javascript:deleteItem("+i+")' href='#'>x</a></td></tr>";
+                    i++;
                 });
 
                 document.getElementById("tauladeProductes").innerHTML=theTable;
@@ -101,20 +134,15 @@
             }
 */
             document.addEventListener("DOMContentLoaded", function() {
-            let products = getProducts();
+              products = getProducts();
             escriureTaula(products);
 
             })
         </script>
     </head>
     <body>
-        <a href="#" onclick="javascript:ordenaPerNom()">[Ordena Nom]</a>&nbsp;
-        <a href="#"  onclick="javascript:ordenaPerCategoria()">[Ordena per Categoria]</a>&nbsp;
-        <a href="#"  onclick="javascript:ordenaPerPreu()">[Ordena per preu]</a>
-        <p><a href="#"  onclick="javascript:filtraPer('')">[Tots]</a>
-            <a href="#"  onclick="javascript:filtraPer('peixos')">[Filtra per Peixos]</a>&nbsp;
-            <a href="#"  onclick="javascript:filtraPer('carns')">[Filtra per carns]</a>&nbsp;
-            <a href="#"  onclick="javascript:filtraPer('fruites')">[Filtra per fruites]</a>
+        <a href="#" onclick="javascript:ordenaPerNom()">[Ordena Nom]</a>&nbsp;<a href="#"  onclick="javascript:ordenaPerCategoria()">[Ordena per Categoria]</a>&nbsp;<a href="#"  onclick="javascript:ordenaPerPreu()">[Ordena per preu]</a>
+        <p><a href="#"  onclick="javascript:filtraPer('')">[Tots]</a><a href="#"  onclick="javascript:filtraPer('peixos')">[Filtra per Peixos]</a>&nbsp;<a href="#"  onclick="javascript:filtraPer('carns')">[Filtra per carns]</a>&nbsp;<a href="#"  onclick="javascript:filtraPer('fruites')">[Filtra per fruites]</a>
         <table id="tauladeProductes" border="1"></table>
     </body>
 </html>
