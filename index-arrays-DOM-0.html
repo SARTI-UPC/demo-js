@@ -11,14 +11,6 @@
             document.addEventListener("DOMContentLoaded", function() {
               products = getProducts();
               escriureTaula(products);
-              let url = window.document.URL;
-              document.getElementById("contingut").innerHTML="<p>URL: "+url;
-
-              analitzarForms();  
-              analitzarEnllacos();
-              analitzarImatges();
-
-
             })
         </script>
     </head>
@@ -86,8 +78,10 @@
             <br><br>
             <table id="tauladeProductes" border="1"></table>
 
-            <div id="contingut"></div>
-
+       
             <a href="#" onclick="javascript:obrirNovaFinestra()">Obrir nova finestra!!!</a>
-    </body>
+            <p><a href="#" onclick="javascript:introspeccio()">Introspecció</a>
+                <a href="#" onclick="javascript:clearIntrospeccio()">Netejar</a>
+            <div id="contingut"></div>
+     </body>
 </html>

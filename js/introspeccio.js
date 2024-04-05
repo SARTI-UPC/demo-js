@@ -42,5 +42,20 @@ function analitzarImatges() {
       document.getElementById("contingut").innerHTML+="<p>IMATGES: "+src;
     }
     document.getElementById("contingut").innerHTML+="<hr>";
+}
 
+function analitzarDocument() {
+    let url = window.document.URL;
+    document.getElementById("contingut").innerHTML="<p>URL: "+url;    
+}
+
+function introspeccio() {
+    analitzarDocument();
+    analitzarEnllacos();
+    analitzarImatges();
+    analitzarForms();
+}
+
+function clearIntrospeccio() {
+    document.getElementById("contingut").innerHTML="";    
 }
