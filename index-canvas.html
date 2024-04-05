@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canvas Drawing</title>
+<style>
+  canvas {
+    border: 1px solid black;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="myCanvas" width="500" height="500"></canvas>
+
+<script>
+  // Obtener el lienzo
+  var canvas = document.getElementById("myCanvas");
+  var ctx = canvas.getContext("2d");
+  
+  // Variables para guardar la posición del ratón
+  var isDrawing = false;
+  var lastX = 0;
+  var lastY = 0;
+
+  // Evento de ratón: comienzo del dibujo
+  canvas.addEventListener("mousedown", function(e) {
+    isDrawing = true;
+    lastX = e.offsetX;
+    lastY = e.offsetY;
+  });
+  
+  // Evento de ratón: movimiento durante el dibujo
+  canvas.addEventListener("mousemove", function(e) {
+    if (isDrawing) {
+      var currentX = e.offsetX;
+      var currentY = e.offsetY;
+      
+      // Dibujar una línea desde la posición anterior a la actual
+      ctx.beginPath();
+      ctx.moveTo(lastX, lastY);
+      ctx.lineTo(currentX, currentY);
+      ctx.stroke();
+      
+      // Actualizar la posición anterior con la posición actual
+      lastX = currentX;
+      lastY = currentY;
+    }
+  });
+  
+  // Evento de ratón: fin del dibujo
+  canvas.addEventListener("mouseup", function() {
+    isDrawing = false;
+  });
+</script>
+
+</body>
+</html>
