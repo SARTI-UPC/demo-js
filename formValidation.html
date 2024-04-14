@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+<div class="container">
+
+    <form id="formulario">
+        <div class="titulo">Empezar</div>
+
+        <!-- Entrada para nombre de Usuario -->
+
+        <div>
+            <label for="nombreDeUsuario">Nombre de Usuario</label>
+            <i class="fas fa-user"></i>
+
+            <input
+                    type="text"
+                    name="username"
+                    id="nombreDeUsuario"
+                    placeholder="Introducir nombre"
+            />
+
+            <i class="fas fa-exclamation-circle failure-icon"></i>
+            <i class="far fa-check-circle success-icon"></i>
+
+            <div class="error"></div>
+
+        </div>
+        <!-- Entrada de Correo Electrónico -->
+
+        <div>
+            <label for="correoElectronico">Correo Electrónico</label>
+            <i class="far fa-envelope"></i>
+
+            <input
+                    type="email"
+                    name="email"
+                    id="correoElectronico"
+                    placeholder="abc@gmail.com"
+            />
+
+            <i class="fas fa-exclamation-circle failure-icon"></i>
+            <i class="far fa-check-circle success-icon"></i>
+
+            <div class="error"></div>
+
+        </div>
+        <!--   Entrada de contraseña -->
+
+        <div>
+            <label for="contrasena">Contraseña</label>
+            <i class="fas fa-lock"></i>
+
+            <input
+                    type="password"
+                    name="password"
+                    id="contrasena"
+                    placeholder="Introducir contraseña"
+            />
+
+            <i class="fas fa-exclamation-circle failure-icon"></i>
+            <i class="far fa-check-circle success-icon"></i>
+
+            <div class="error"></div>
+
+        </div>
+
+        <!-- otro código aquí -->
+
+        <button id="btn" type="submit">Enviar</button>
+
+
+    </form>
+
+</div>
+
+
+</body>
+</html>
