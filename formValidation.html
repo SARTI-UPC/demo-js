@@ -185,6 +185,62 @@ button:hover {
 
 </div>
 
+<script>
 
+    let miForm = document.getElementById("formulario")
+    
+    let msjError = document.getElementsByClassName('error')
+    let failureIcon = document.getElementsByClassName('failure-icon')
+    let successIcon = document.getElementsByClassName('success-icon')
+    
+    
+    function validarObligatorio(elemento, index){
+        let error = false
+        if(elemento.value.trim().length == 0){
+            elemento.style.border = "2px solid red"
+            msjError[index].innerHTML = "Este campo es obligatorio"
+            failureIcon[index].style.opacity = 1
+            successIcon[index].style.opacity = 0
+            error = true
+        }else{
+            elemento.style.border = "2px solid green"
+            msjError[index].innerHTML = ""
+            failureIcon[index].style.opacity = 0
+            successIcon[index].style.opacity = 1
+        }
+        return error
+    }
+    
+    
+    miForm.addEventListener('submit', (e)=>{
+        e.preventDefault()
+
+        /***accediento al los elementos directamente**/
+        let nombre = document.getElementById("nombreDeUsuario")
+        let email = document.getElementById("correoElectronico")
+        let pasword = document.getElementById("contrasena")
+    
+        let errorNombre = validarObligatorio(nombre,0)
+        let errorEmail =validarObligatorio(email,1)
+        let errorPassword =validarObligatorio(pasword,2)
+        
+        if(!errorNombre && !errorEmail && !errorPassword)
+            miForm.submit()
+        /*******/
+
+        /*con el for**/
+        // let elementos = Array.from(document.getElementsByTagName('input'))
+        // let error = false
+        // elementos.forEach((elemento, index) =>{
+        //     if(validarObligatorio(elemento,index))
+        //         error = true
+        // })
+
+        // if(!error)
+        //     miForm.submit()
+    
+    })
+    
+    </script>
 </body>
 </html>
