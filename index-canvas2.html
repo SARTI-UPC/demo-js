@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canvas Drawing</title>
+<style>
+  canvas {
+    border: 1px solid black;
+  }
+
+  .basicButton {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .basicButton:hover {
+    background-color: gray;
+  }
+
+
+
+  .redButton {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .redButton:hover {
+    background-color: darkred;
+  }
+
+  .blueButton {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: blue;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .blueButton:hover {
+    background-color: blueviolet;
+  }
+
+</style>
+
+</head>
+<body>
+    <a href="#" onclick="javascript:nouColor('black')" class="basicButton">BLACK</a>&nbsp;<a href="#" onclick="javascript:nouColor('red')" class="redButton">RED</a>&nbsp;<a href="#" onclick="javascript:nouColor('blue')" class="blueButton">BLUE</a><br>
+<br>
+<canvas id="myCanvas" width="500" height="500"></canvas>
+
+<script>
+  
+
+
+  // Obtener el lienzo
+
+  let currentColor = "black";
+
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  
+  // Variables para guardar la posición del ratón
+  let isDrawing = false;
+  let lastX = 0;
+  let lastY = 0;
+
+  // Evento de ratón: comienzo del dibujo
+  canvas.addEventListener("mousedown", function(e) {
+    isDrawing = true;
+    lastX = e.offsetX;
+    lastY = e.offsetY;
+  });
+  
+  // Evento de ratón: movimiento durante el dibujo
+  canvas.addEventListener("mousemove", function(e) {
+    if (isDrawing) {
+      var currentX = e.offsetX;
+      var currentY = e.offsetY;
+      
+      // Dibujar una línea desde la posición anterior a la actual
+      ctx.beginPath();
+      ctx.moveTo(lastX, lastY);
+      ctx.strokeStyle = currentColor;
+      console.log(currentColor);
+      ctx.lineTo(currentX, currentY);
+      ctx.stroke();
+      
+      // Actualizar la posición anterior con la posición actual
+      lastX = currentX;
+      lastY = currentY;
+    }
+  });
+  
+  // Evento de ratón: fin del dibujo
+  canvas.addEventListener("mouseup", function() {
+    isDrawing = false;
+  });
+
+
+  function nouColor(theColor) {
+    currentColor = theColor;
+    console.log("nou color", )
+  }
+</script>
+
+</body>
+</html>
