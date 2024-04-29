@@ -1,0 +1,32 @@
+<HTML>
+    <HEAD>
+
+
+<script>
+function novaFila(tbody, num)  {
+    var novaFila = tbody.insertRow();
+
+    let cell1 = novaFila.insertCell(0);
+    let cell2 = novaFila.insertCell(1);
+    cell1.textContent = "F"+num+".txt";
+}
+
+
+function addFile() {
+    let laTaula = document.getElementById("laTaula");
+    let num = laTaula.rows.length;
+    console.log("num: ", num);
+    let tbody = laTaula.getElementsByTagName('tbody')[0];
+    novaFila(tbody, num);
+
+}
+</script>
+</head>
+
+<BODY>
+<a href="#" onclick="javascript:addFile()">[AFEGIR]</a>
+<TABLE id="laTaula">
+<tbody></tbody>
+</TABLE>
+</BODY>
+</HTML>
