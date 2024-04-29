@@ -1,0 +1,78 @@
+<HTML>
+    <head>
+        <link rel="stylesheet" href="css/modal.css">
+        <script>
+            let filaAEsborrar;
+            function initTable()  {
+                let laTaula = document.getElementById("laTaula");
+                var tbody = laTaula.getElementsByTagName('tbody')[0];
+
+                for (let i=0; i<5; i++) {
+                    novaFila(tbody, i);
+                }
+            }
+            function deleteFile(laFila) {
+                let laTaula = document.getElementById("laTaula");
+                let tbody = laTaula.getElementsByTagName('tbody')[0];
+
+
+                console.log("esborrem Fitxer", laFila);
+                tbody.removeChild(laFila);
+            }
+
+
+            function novaFila(tbody, num)  {
+                var novaFila = tbody.insertRow();
+
+                let cell1 = novaFila.insertCell(0);
+                let cell2 = novaFila.insertCell(1);
+                cell1.textContent = "F"+num+".txt";
+
+                let linkDelete = document.createElement("a");
+                linkDelete.href = "#";
+                linkDelete.textContent = "x";
+                //linkDelete.onclick = deleteFile;
+                // funció fletxa => 
+                linkDelete.onclick= () => {
+                    modal.style.display = 'block';
+                    elSpan = document.getElementById("nomFitxer");
+                    elSpan.textContent = "F"+num+".txt";
+                    filaAEsborrar = novaFila;
+                };
+                cell2.appendChild(linkDelete);
+
+            }
+
+
+            function addFile() {
+                let laTaula = document.getElementById("laTaula");
+                let num = laTaula.rows.length;
+                console.log("num: ", num);
+                let tbody = laTaula.getElementsByTagName('tbody')[0];
+                novaFila(tbody, num);
+
+            }
+        </script>
+    </head>
+
+    <BODY onLoad="initTable()">
+        <a href="#" onclick="javascript:addFile()">[AFEGIR]</a>
+        <TABLE id="laTaula">
+            <tbody></tbody>
+        </TABLE>
+
+        <div id="confirmModal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <p>Estàs segur que vols esborrar aquest fitxer <span id="nomFitxer"></span> ?</p>
+              <button id="confirmarBtn">Confirmar</button>
+              <button id="cancelarBtn">Cancelar</button>
+            </div>
+          </div>
+          
+        <script src="js/modal.js"></script>
+
+    </BODY>
+
+
+</HTML>
