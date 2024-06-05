@@ -39,7 +39,9 @@
                 categoryDiv.appendChild(emojiList);
                 container.appendChild(categoryDiv);
                 
-                // Procesar emojis con Twemoji
+                // Procesar emojis con Twemoji. Es una función proporcionada por 
+                //la biblioteca Twemoji. Su propósito es buscar emojis en el texto de un elemento HTML y
+                // reemplazarlos con imágenes SVG (o PNG) correspondientes.
                 twemoji.parse(emojiList, {
                     folder: 'svg',
                     ext: '.svg'
